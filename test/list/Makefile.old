@@ -1,0 +1,52 @@
+#/*
+#---
+#Copyright 2017 David Doyaguez Sanchez (daviddoyaguez@gmail.com)
+#---
+#This file is part of LibRDT.
+#
+#    LibRDT is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    LibRDT is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with LibRDT.  If not, see <http://www.gnu.org/licenses/>.
+#---
+#*/
+SRCDIR=src
+INCDIR=inc
+TOPINC=../../inc
+OBJDIR=obj
+MODPATH=../../obj/list.o ../../obj/node.o
+DEBUGFLAG=-g
+
+all: test_list_launcher
+
+test_list_launcher: $(MODPATH) $(OBJDIR)/test_list_launcher.o $(OBJDIR)/test_list_auxiliar.o $(OBJDIR)/test_list_create.o $(OBJDIR)/test_list_insert.o $(OBJDIR)/test_list_remove.o
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -I$(TOPINC) $^ -o $@ $(DEBUGFLAG)
+
+$(OBJDIR)/test_list_launcher.o: $(SRCDIR)/test_list_launcher.c $(INCDIR)/test_list.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -I$(TOPINC) -c $< -o $@ $(DEBUGFLAG)
+
+$(OBJDIR)/test_list_auxiliar.o: $(SRCDIR)/test_list_auxiliar.c $(INCDIR)/test_list.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -I$(TOPINC) -c $< -o $@ $(DEBUGFLAG)
+
+$(OBJDIR)/test_list_create.o: $(SRCDIR)/test_list_create.c $(INCDIR)/test_list.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -I$(TOPINC) -c $< -o $@ $(DEBUGFLAG)
+
+$(OBJDIR)/test_list_insert.o: $(SRCDIR)/test_list_insert.c $(INCDIR)/test_list.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -I$(TOPINC) -c $< -o $@ $(DEBUGFLAG)
+
+$(OBJDIR)/test_list_remove.o: $(SRCDIR)/test_list_remove.c $(INCDIR)/test_list.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -I$(TOPINC) -c $< -o $@ $(DEBUGFLAG)
+
+.PHONY: clean
+
+clean:
+	rm -f $(OBJDIR)/*.o
+	rm -f test_list_launcher

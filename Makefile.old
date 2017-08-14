@@ -1,0 +1,65 @@
+#/*
+#---
+#Copyright 2017 David Doyaguez Sanchez (daviddoyaguez@gmail.com)
+#---
+#This file is part of LibRDT.
+#
+#    LibRDT is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    LibRDT is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with LibRDT.  If not, see <http://www.gnu.org/licenses/>.
+#---
+#*/
+SRCDIR=src
+INCDIR=inc
+OBJDIR=obj
+DEBUGFLAG=
+#put a -g in the DEBUGFLAG variable to include debug symbols in the library
+
+all: static_lib
+
+static_lib: librdt.a
+
+librdt.a: $(OBJDIR)/node.o $(OBJDIR)/list.o $(OBJDIR)/bintree.o
+	ar -rcs $@ $^
+
+$(OBJDIR)/node.o: $(SRCDIR)/node.c $(INCDIR)/node.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -c $< -o $@ $(DEBUGFLAG)
+
+$(OBJDIR)/list.o: $(SRCDIR)/list.c $(INCDIR)/list.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -c $< -o $@ $(DEBUGFLAG)
+
+$(OBJDIR)/bintree.o: $(SRCDIR)/bintree.c $(INCDIR)/bintree.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -c $< -o $@ $(DEBUGFLAG)
+
+
+
+.PHONY: clean test execute_test doc
+
+clean:
+	rm -f $(OBJDIR)/*.o
+	rm -f librdt.a
+	$(MAKE) -C test/node clean
+	$(MAKE) -C test/list clean
+	$(MAKE) -C test/bintree clean
+
+test: static_lib
+	$(MAKE) -C test/node
+	$(MAKE) -C test/list
+	$(MAKE) -C test/bintree
+
+execute_test: test
+	./test/node/test_node_launcher
+	./test/list/test_list_launcher
+	./test/bintree/test_bintree_launcher
+
+doc:
+	doxygen Doxyfile
