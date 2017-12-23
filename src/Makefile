@@ -132,7 +132,8 @@ am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
 librdt_a_AR = $(AR) $(ARFLAGS)
 librdt_a_LIBADD =
-am_librdt_a_OBJECTS = bintree.$(OBJEXT) list.$(OBJEXT) node.$(OBJEXT)
+am_librdt_a_OBJECTS = bintree.$(OBJEXT) list.$(OBJEXT) node.$(OBJEXT) \
+	daemon.$(OBJEXT)
 librdt_a_OBJECTS = $(am_librdt_a_OBJECTS)
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
@@ -283,7 +284,7 @@ top_builddir = ..
 top_srcdir = ..
 AM_CPPFLAGS = -I../inc
 lib_LIBRARIES = librdt.a
-librdt_a_SOURCES = bintree.c list.c node.c
+librdt_a_SOURCES = bintree.c list.c node.c daemon.c
 all: all-am
 
 .SUFFIXES:
@@ -361,6 +362,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 include ./$(DEPDIR)/bintree.Po
+include ./$(DEPDIR)/daemon.Po
 include ./$(DEPDIR)/list.Po
 include ./$(DEPDIR)/node.Po
 
