@@ -42,6 +42,7 @@ typedef struct _RDTNode RDTNode;
 * @return -2 when function_copy is NULL
 * @return -3 when function_free is NULL
 * @return -4 when function_compare is NULL
+* @return -5 when fails to allocate memory
 * @return 1 when everything OK
 */
 int rdt_node_create(RDTNode** new_node, RDTCopyHandler function_copy, RDTFreeHandler function_free, RDTCompareHandler function_compare);
