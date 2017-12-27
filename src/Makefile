@@ -198,7 +198,7 @@ AR = ar
 AUTOCONF = ${SHELL} /home/lorddds/Documentos/PROYECTOS/LibRDT/librdt/missing autoconf
 AUTOHEADER = ${SHELL} /home/lorddds/Documentos/PROYECTOS/LibRDT/librdt/missing autoheader
 AUTOMAKE = ${SHELL} /home/lorddds/Documentos/PROYECTOS/LibRDT/librdt/missing automake-1.15
-AWK = mawk
+AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2

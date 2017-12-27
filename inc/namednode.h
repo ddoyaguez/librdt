@@ -82,9 +82,9 @@ int rdt_namednode_free(RDTNamedNode** node);
 * @param node pointer to the named node
 *
 * @return NULL if something went wrong
-* @return a pointer to the inner node
+* @return a pointer to the direction of the inner node
 */
-RDTNode* rdt_namednode_get_node(RDTNamedNode* node);
+RDTNode** rdt_namednode_get_node(RDTNamedNode* node);
 
 /**
 * @brief

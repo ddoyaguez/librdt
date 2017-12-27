@@ -413,7 +413,7 @@ AR = ar
 AUTOCONF = ${SHELL} /home/lorddds/Documentos/PROYECTOS/LibRDT/librdt/missing autoconf
 AUTOHEADER = ${SHELL} /home/lorddds/Documentos/PROYECTOS/LibRDT/librdt/missing autoheader
 AUTOMAKE = ${SHELL} /home/lorddds/Documentos/PROYECTOS/LibRDT/librdt/missing automake-1.15
-AWK = mawk
+AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -498,7 +498,9 @@ top_build_prefix =
 top_builddir = .
 top_srcdir = .
 SUBDIRS = src
-TESTS = test/node/test_node_launcher test/bintree/test_bintree_launcher test/list/test_list_launcher
+TESTS = test/node/test_node_launcher test/bintree/test_bintree_launcher test/list/test_list_launcher \
+ test/namednode/test_namednode_launcher
+
 customincludedir = $(includedir)/rdt
 custominclude_HEADERS = inc/bintree.h inc/list.h inc/node.h inc/daemon.h inc/namednode.h
 all: config.h
@@ -840,6 +842,13 @@ test/bintree/test_bintree_launcher.log: test/bintree/test_bintree_launcher
 test/list/test_list_launcher.log: test/list/test_list_launcher
 	@p='test/list/test_list_launcher'; \
 	b='test/list/test_list_launcher'; \
+	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
+	--log-file $$b.log --trs-file $$b.trs \
+	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \
+	"$$tst" $(AM_TESTS_FD_REDIRECT)
+test/namednode/test_namednode_launcher.log: test/namednode/test_namednode_launcher
+	@p='test/namednode/test_namednode_launcher'; \
+	b='test/namednode/test_namednode_launcher'; \
 	$(am__check_pre) $(LOG_DRIVER) --test-name "$$f" \
 	--log-file $$b.log --trs-file $$b.trs \
 	$(am__common_driver_flags) $(AM_LOG_DRIVER_FLAGS) $(LOG_DRIVER_FLAGS) -- $(LOG_COMPILE) \

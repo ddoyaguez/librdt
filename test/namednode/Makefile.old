@@ -1,0 +1,49 @@
+#/*
+#---
+#Copyright 2017 David Doyaguez Sanchez (daviddoyaguez@gmail.com)
+#---
+#This file is part of LibRDT.
+#
+#    LibRDT is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    LibRDT is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with LibRDT.  If not, see <http://www.gnu.org/licenses/>.
+#---
+#*/
+SRCDIR=src
+INCDIR=inc
+TOPINC=../../inc
+OBJDIR=obj
+MODPATH=../../obj/namednode.o
+DEBUGFLAG=-g
+
+all: test_namednode_launcher
+
+test_namednode_launcher: $(MODPATH) $(OBJDIR)/test_namednode_launcher.o $(OBJDIR)/test_namednode_auxiliar.o $(OBJDIR)/test_namednode_create.o $(OBJDIR)/test_namednode_copy.o
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -I$(TOPINC) $^ -o $@ $(DEBUGFLAG)
+
+$(OBJDIR)/test_namednode_launcher.o: $(SRCDIR)/test_namednode_launcher.c $(INCDIR)/test_namednode.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -I$(TOPINC) -c $< -o $@ $(DEBUGFLAG)
+
+$(OBJDIR)/test_namednode_auxiliar.o: $(SRCDIR)/test_namednode_auxiliar.c $(INCDIR)/test_namednode.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -I$(TOPINC) -c $< -o $@ $(DEBUGFLAG)
+
+$(OBJDIR)/test_namednode_create.o: $(SRCDIR)/test_namednode_create.c $(INCDIR)/test_namednode.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -I$(TOPINC) -c $< -o $@ $(DEBUGFLAG)
+
+$(OBJDIR)/test_namednode_copy.o: $(SRCDIR)/test_namednode_copy.c $(INCDIR)/test_namednode.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -I$(TOPINC) -c $< -o $@ $(DEBUGFLAG)
+
+.PHONY: clean
+
+clean:
+	rm -f $(OBJDIR)/*.o
+	rm -f test_namednode_launcher

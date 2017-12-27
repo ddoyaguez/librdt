@@ -40,7 +40,7 @@ int rdt_namednode_create(RDTNamedNode** new_named_node, RDTCopyHandler function_
 	nl = strlen(name);
 	if (nl < 1) {
 		rdt_node_free(&new_node);
-		return -6;
+		return -5;
 	}
 
 	(*new_named_node) = calloc(1, sizeof(RDTNamedNode));
@@ -53,7 +53,7 @@ int rdt_namednode_create(RDTNamedNode** new_named_node, RDTCopyHandler function_
 	if (!(*new_named_node)->name) {
 		rdt_node_free(&new_node);
 		free(new_named_node);
-		return -7;
+		return -6;
 	}
 
 	memmove((*new_named_node)->name, name, nl);
@@ -124,11 +124,11 @@ int rdt_namednode_free(RDTNamedNode** node) {
 	return ret;
 }
 
-RDTNode* rdt_namednode_get_node(RDTNamedNode* node) {
+RDTNode** rdt_namednode_get_node(RDTNamedNode* node) {
 	if (!node) {
 		return NULL;
 	}
-	return node->node;
+	return &(node->node);
 }
 
 char* rdt_namednode_get_name(RDTNamedNode* node) {

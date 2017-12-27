@@ -393,7 +393,7 @@ on `(hostname || uname -n) 2>/dev/null | sed 1q`
 "
 
 # Files that config.status was made for.
-config_files=" Makefile src/Makefile test/bintree/Makefile test/list/Makefile test/node/Makefile"
+config_files=" Makefile src/Makefile test/bintree/Makefile test/list/Makefile test/namednode/Makefile test/node/Makefile"
 config_headers=" config.h"
 config_commands=" depfiles"
 
@@ -441,7 +441,7 @@ ac_pwd='/home/lorddds/Documentos/PROYECTOS/LibRDT/librdt'
 srcdir='.'
 INSTALL='/usr/bin/install -c'
 MKDIR_P='/bin/mkdir -p'
-AWK='mawk'
+AWK='gawk'
 test -n "$AWK" || AWK=awk
 # The default lists apply if the user does not specify any file.
 ac_need_defaults=:
@@ -552,6 +552,7 @@ do
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "test/bintree/Makefile") CONFIG_FILES="$CONFIG_FILES test/bintree/Makefile" ;;
     "test/list/Makefile") CONFIG_FILES="$CONFIG_FILES test/list/Makefile" ;;
+    "test/namednode/Makefile") CONFIG_FILES="$CONFIG_FILES test/namednode/Makefile" ;;
     "test/node/Makefile") CONFIG_FILES="$CONFIG_FILES test/node/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
@@ -654,7 +655,7 @@ S["am__tar"]="$${TAR-tar} chof - \"$$tardir\""
 S["AMTAR"]="$${TAR-tar}"
 S["am__leading_dot"]="."
 S["SET_MAKE"]=""
-S["AWK"]="mawk"
+S["AWK"]="gawk"
 S["mkdir_p"]="$(MKDIR_P)"
 S["MKDIR_P"]="/bin/mkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
