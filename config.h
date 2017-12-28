@@ -11,7 +11,7 @@
 #define PACKAGE_NAME "librdt"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "librdt 1.0.0"
+#define PACKAGE_STRING "librdt 1.0.1"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "librdt"
@@ -20,7 +20,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.0.0"
+#define PACKAGE_VERSION "1.0.1"
 
 /* Version number of package */
-#define VERSION "1.0.0"
+#define VERSION "1.0.1"

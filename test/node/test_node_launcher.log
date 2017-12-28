@@ -1,9 +1,0 @@
-LibRDT test_node_launcher
-=========================
-
- * Executing test_node_create tests...	OK
-
- * Executing test_node_copy tests...	OK
-
-SUMMARY: OK
-PASS test/node/test_node_launcher (exit status: 0)

@@ -1,4 +1,4 @@
-named/*
+/*
 ---
 Copyright 2017 David Doyaguez Sanchez (daviddoyaguez@gmail.com)
 ---

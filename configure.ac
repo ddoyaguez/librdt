@@ -1,4 +1,4 @@
-AC_INIT([librdt], [1.0.0], [daviddoyaguez@gmail.com])
+AC_INIT([librdt], [1.0.1], [daviddoyaguez@gmail.com])
 AM_INIT_AUTOMAKE([subdir-objects foreign -Wall -Werror])
 AC_PROG_CC
 AM_PROG_AR

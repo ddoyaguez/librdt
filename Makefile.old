@@ -21,14 +21,14 @@
 SRCDIR=src
 INCDIR=inc
 OBJDIR=obj
-DEBUGFLAG=
+DEBUGFLAG=-g
 #put a -g in the DEBUGFLAG variable to include debug symbols in the library
 
 all: static_lib
 
 static_lib: librdt.a
 
-librdt.a: $(OBJDIR)/node.o $(OBJDIR)/list.o $(OBJDIR)/bintree.o
+librdt.a: $(OBJDIR)/node.o $(OBJDIR)/list.o $(OBJDIR)/bintree.o $(OBJDIR)/namednode.o
 	ar -rcs $@ $^
 
 $(OBJDIR)/node.o: $(SRCDIR)/node.c $(INCDIR)/node.h
@@ -40,26 +40,30 @@ $(OBJDIR)/list.o: $(SRCDIR)/list.c $(INCDIR)/list.h
 $(OBJDIR)/bintree.o: $(SRCDIR)/bintree.c $(INCDIR)/bintree.h
 	gcc -ansi -Wall -pedantic -I$(INCDIR) -c $< -o $@ $(DEBUGFLAG)
 
-
+$(OBJDIR)/namednode.o: $(SRCDIR)/namednode.c $(INCDIR)/namednode.h
+	gcc -ansi -Wall -pedantic -I$(INCDIR) -c $< -o $@ $(DEBUGFLAG)
 
 .PHONY: clean test execute_test doc
 
 clean:
 	rm -f $(OBJDIR)/*.o
 	rm -f librdt.a
-	$(MAKE) -C test/node clean
-	$(MAKE) -C test/list clean
-	$(MAKE) -C test/bintree clean
+	$(MAKE) -f Makefile.old -C test/node clean
+	$(MAKE) -f Makefile.old -C test/list clean
+	$(MAKE) -f Makefile.old -C test/bintree clean
+	$(MAKE) -f Makefile.old -C test/namednode clean
 
 test: static_lib
-	$(MAKE) -C test/node
-	$(MAKE) -C test/list
-	$(MAKE) -C test/bintree
+	$(MAKE) -f Makefile.old -C test/node
+	$(MAKE) -f Makefile.old -C test/list
+	$(MAKE) -f Makefile.old -C test/bintree
+	$(MAKE) -f Makefile.old -C test/namednode
 
 execute_test: test
 	./test/node/test_node_launcher
 	./test/list/test_list_launcher
 	./test/bintree/test_bintree_launcher
+	./test/namednode/test_namednode_launcher
 
 doc:
 	doxygen Doxyfile

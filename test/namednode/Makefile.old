@@ -22,7 +22,7 @@ SRCDIR=src
 INCDIR=inc
 TOPINC=../../inc
 OBJDIR=obj
-MODPATH=../../obj/namednode.o
+MODPATH=../../obj/namednode.o ../../obj/node.o
 DEBUGFLAG=-g
 
 all: test_namednode_launcher

@@ -32,9 +32,18 @@ int rdt_namednode_create(RDTNamedNode** new_named_node, RDTCopyHandler function_
 	int ret;
 	int nl;
 
+	if (!new_named_node) {
+		return -1;
+	}
+
 	ret = rdt_node_create(&new_node, function_copy, function_free, function_compare);
 	if (ret < 1) {
 		return ret;
+	}
+
+	if (!name) {
+		rdt_node_free(&new_node);
+		return -5;
 	}
 
 	nl = strlen(name);
@@ -99,6 +108,7 @@ int rdt_namednode_copy(RDTNamedNode** destiny_node, RDTNamedNode* origin_node) {
 		}
 	}
 
+	rdt_node_free(&((*destiny_node)->node));
 	(*destiny_node)->node = node_copy;
 
 	return ret;
@@ -120,6 +130,7 @@ int rdt_namednode_free(RDTNamedNode** node) {
 	}
 	ret = rdt_node_free(&((*node)->node));
 	free(*node);
+	*node = NULL;
 
 	return ret;
 }

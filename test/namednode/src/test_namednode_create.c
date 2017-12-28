@@ -48,7 +48,7 @@ int test_namednode_create_2() {
 
 /*This test makes sure that the third parameter is NULL the ret is -3*/
 int test_namednode_create_3() {
-  RDTNode* node;
+  RDTNamedNode* node;
   int ret;
 
   ret = rdt_namednode_create(&node, tn_copy, NULL, NULL, NULL);

@@ -1,8 +1,0 @@
-LibRDT test_bintree_launcher
-=========================
-
- * Executing test_bintree_create tests...	OK
-
- * Executing test_bintree_insert tests...	OK
-
-PASS test/bintree/test_bintree_launcher (exit status: 0)

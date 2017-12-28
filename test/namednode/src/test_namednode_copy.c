@@ -93,7 +93,7 @@ int test_namednode_copy_4() {
 
   innernode2 = rdt_namednode_get_node(node2);
 
-  data2 = rdt_node_get_data(innernode2);
+  data2 = rdt_node_get_data(*innernode2);
   if (!data2) {
     rdt_namednode_free(&node1);
     return -1;
@@ -117,8 +117,14 @@ int test_namednode_copy_4() {
 	return -4;
   }
 
-  rdt_namednode_free(&node1);
-  rdt_namednode_free(&node2);
+  ret = rdt_namednode_free(&node1);
+  if (ret < 1) {
+  	return -5;
+  }
+  ret = rdt_namednode_free(&node2);
+  if (ret < 1) {
+  	return -6;
+  }
 
   return 1;
 }
